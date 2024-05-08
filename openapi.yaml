@@ -1,0 +1,94 @@
+openapi: 3.0.3
+info:
+  title: Ejercicio API 1.0
+  description: |-
+    En este ejercicio vamos a realizar una simulación de diferentes Endpoints en base a un modelo de datos proporcio
+  version: 1.0.11
+
+servers:
+  - url: https://v0/api/articles
+tags:
+  - name: Article
+    description: Este endpoint maneja todo lo relacionado con los articulos.
+
+paths:
+  /articles:
+    get:
+      summary: Obtiene los aticulos
+      responses:
+        200:
+          description: Lista de articulos obtenida correctamente
+    post:
+      summary: Crea un articulo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ID:
+                  type: integer
+                title:
+                  type: string
+                abstract:
+                  type: string
+                content:
+                  type: string
+      responses:
+        201:
+          description: Articulo creado correctamente
+          
+          
+  /articles/{articleId}:
+    get:
+      summary: Obtiene un articulo por su ID
+      parameters:
+        - in: path
+          name: articleId
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: Articulo obtenido correctamente
+    
+    put:
+      summary: Actualiza un proyecto ya creado
+      parameters:
+        - in: path
+          name: articleId
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ID:
+                  type: integer
+                title:
+                  type: string
+                abstract:
+                  type: string
+                content:
+                  type: string
+      responses:
+        200:
+          description: Articulo actualizado correctamente
+          
+    delete:
+      summary: Elimina un articulo por su ID
+      parameters:
+        - in: path
+          name: articleId
+          required: true
+          schema:
+            type: integer
+      responses:
+        204:
+          description: Articulo eliminado correctamente
+        
